@@ -4,17 +4,18 @@ import json
 
 consumer = KafkaConsumer('my_topic', bootstrap_servers='kafka:9092', auto_offset_reset='earliest', enable_auto_commit=True, group_id='my_group', value_deserializer=lambda x: json.loads(x.decode('utf-8')))
 try:
-    mongo_client = MongoClient('mongodb://root:example@mongodb:27017/')
-    #print(mongo_client)
+    MONGODB_URI = 'mongodb+srv://amal_99_:eye-of-horus-2024@eye-of-horus-prototype.prteofh.mongodb.net/?retryWrites=true&w=majority&appName=Eye-of-Horus-prototype'
+    mongo_client = MongoClient(MONGODB_URI)
+    print(mongo_client)
     mongo_db = mongo_client['test_database']
-    #print(mongo_db)
+    print(mongo_db)
     mongo_collection = mongo_db['test_collection']
-    #print(mongo_collection)
+    print(mongo_collection)
 
     for message in consumer:
         message_value = message.value
         print(f"Received message: {message_value}")
-        print('yes')
+
         # Insert message into MongoDB
         mongo_collection.insert_one(message_value)
     print("Successfully connected to MongoDB")
