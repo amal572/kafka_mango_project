@@ -4,7 +4,7 @@ import json
 
 consumer = KafkaConsumer('my_topic', bootstrap_servers='kafka:9092', auto_offset_reset='earliest', enable_auto_commit=True, group_id='my_group', value_deserializer=lambda x: json.loads(x.decode('utf-8')))
 try:
-    MONGODB_URI = 'mongodb+srv://amal_99_:eye-of-horus-2024@eye-of-horus-prototype.prteofh.mongodb.net/?retryWrites=true&w=majority&appName=Eye-of-Horus-prototype'
+    MONGODB_URI = ''
     mongo_client = MongoClient(MONGODB_URI)
     print(mongo_client)
     mongo_db = mongo_client['test_database']
